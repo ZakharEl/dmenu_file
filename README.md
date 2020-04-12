@@ -24,7 +24,7 @@ standard output and it exits with a error code of 2. If dmenu is exited
 it exits with an error code of 1.
 
 # INSTALL
-git clone . cd into the directory you cloned in to and sudo make install. Must have dmenu or it will throw an error.
+git clone https://github.com/ZakharEl/dmenu_file.git. cd into the directory you cloned in to and sudo make install. Must have dmenu or it will throw an error.
 
 # AUTHORS
 
