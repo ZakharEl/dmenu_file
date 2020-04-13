@@ -1,15 +1,15 @@
 #!/bin/bash
 pidof dmenu &>/dev/null && exit 1
-[ "$1" ] && d="$1" || d="$(pwd)"
+[ "$1" ] && set -- "$(realpath -s "$1")" && d="$1" || d="$(pwd)"
 [ -h "$d" ] || [ -f "$d" ] && echo "$d" && exit
 while
 	c="$(ls -a "$d" 2>/dev/null | dmenu -i -l 20 -p "Choose a path: ")"
-	[ "$c" == ".." ] && c="$(dirname "$d")" || c="$d/$c"
-	c="${c%/.}"
-	[ "$c" == "$d/" ] && exit 1
+	[ "${c:0:1}" = '/' ] || c="$d/$c"
+	c="$(realpath -s "$c")"
+	[ "$c" == "$d" ] && exit 1
 	[ -d "$c" ]
 do
 	d="$c"
 done
 echo "$c"
-[ -f "$c" ] || exit 2
+[ -f "$c" ] || [ -h "$c" ] || exit 2
