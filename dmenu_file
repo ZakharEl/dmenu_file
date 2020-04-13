@@ -3,9 +3,9 @@ pidof dmenu &>/dev/null && exit 1
 [ "$1" ] && set -- "$(realpath -sm "$1")" && d="$1" || d="$(pwd)"
 [ -h "$d" ] || [ -f "$d" ] && echo "$d" && exit
 while
-	c="$(ls -a "$d" 2>/dev/null | dmenu -i -l 20 -p "Choose a path: ")"
+	c="$(ls -a "$d" 2>/dev/null | dmenu -i -l 20 -p 'Choose a path: ')"
 	[ "${c:0:1}" = '/' ] || c="$d/$c"
-	c="$(realpath -s "$c")"
+	c="$(realpath -sm "$c")"
 	[ "$c" == "$d" ] && exit 1
 	[ -d "$c" ]
 do
