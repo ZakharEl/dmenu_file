@@ -1,7 +1,6 @@
 #!/bin/bash
 pidof dmenu &>/dev/null && exit 1
 [ "$1" ] && set -- "$(realpath -sm "$1")" && d="$1" || d="$(pwd)"
-[ -h "$d" ] || [ -f "$d" ] && echo "$d" && exit
 c="$d"
 while [ -d "$c" ]
 do
